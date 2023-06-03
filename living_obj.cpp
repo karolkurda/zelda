@@ -46,10 +46,12 @@ sf::Vector2f tmp;
             case bow:
                 ShootCooldown.restart();
 
-                return {tmp, DIR, 10, 10};
+                return {tmp, DIR, 10, 6};
         }
-
 }
+
+
+
 sf::Time living_obj::getShootCooldown()
 {
     return ShootCooldown.getElapsedTime();

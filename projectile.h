@@ -9,13 +9,15 @@
 #include "entity.h"
 
 class projectile : public entity {
+    std::vector<projectile> Projectiles;
 
 directions currDIR;
 int time;
 sf::Texture arrow;
 
 public:
-
+    sf::Clock projectileSpeed;
+    sf::Clock projectileTTL;
     projectile(sf::Vector2f POS, directions dir, int dmg,int t);
     void Update();
 };

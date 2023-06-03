@@ -7,6 +7,7 @@
 
 class game {
     sf::Clock gameCLOCK;
+
     std::vector<projectile> Projectiles;
     std::vector<enemy> enemies;
     std::vector<sf::RectangleShape> terrain;

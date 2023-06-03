@@ -1,9 +1,10 @@
 #include <iostream>
 #include "entity.h"
+#include "projectile.h"
 
 
 entity::entity(sf::Vector2f position, int hp) {
-
+    health=hp;
     hitbox.setPosition(position);
     hitbox.setFillColor(sf::Color::White);
     hitbox.setSize(sf::Vector2f(50, 50));
@@ -35,19 +36,21 @@ void entity::moveEntity(directions dir) {
 
 }
 
-int entity::getHealth() {
+int entity::getHealth() const {
     return health;
 }
 
 int entity::takeDMG(int dmg)
 {
     health-=dmg;
-    if(dmg < 1000)
+    if(dmg > 0)
     {
         std::cout<<"dmg taken"<<std::endl;
     }
-
+    return dmg;
 }
+
+
 
 void entity::setPosition(float x, float y) {
 hitbox.setPosition(x , y);

@@ -21,6 +21,7 @@ protected:
     weapons currentWeapon;
 public:
     living_obj(sf::Vector2f position, int hp, weapons W);
+
     void walk(directions dir);
     projectile attack(directions DIR);
     weapons getCurrWeapon();

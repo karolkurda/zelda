@@ -10,20 +10,21 @@ class entity {
 
 protected:
     sf::RectangleShape hitbox;
-    int health;
-public:
 
+public:
+    int health;
     entity(sf::Vector2f position, int hp);
 
     sf::RectangleShape getHitbox();
 
-    int getHealth();
+    int getHealth() const;
 
     int takeDMG(int dmg);
 
     void moveEntity(directions dir);
 
     void setPosition (float x, float y);
+
 };
 
 

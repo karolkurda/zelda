@@ -43,14 +43,14 @@ void game::Loop() {
      HealthCheck();
         control();
         window.clear();
-
         window.draw(lunk.getHitbox());
         if(gameCLOCK.getElapsedTime().asMilliseconds() > 70)
         {
-            UpdateProjectiles();
+
             gameCLOCK.restart();
         }
         DrawProj();
+        UpdateProjectiles();
         UpdateEnemies();
         UpdateWalls();
         SwapLevels();
@@ -108,28 +108,24 @@ tmp.setPosition(lunk.getHitbox().getPosition());
 }
 }
 void game::UpdateProjectiles() {
-    if(!Projectiles.empty())
-    {
-        for(int p=0;p<Projectiles.size();p++)
+        if(!Projectiles.empty())
         {
-            Projectiles[p].Update();
+            for(int p=0;p<Projectiles.size();p++)
+            {
+                Projectiles[p].Update();
+
+            }
         }
-    }
 }
 void game::DrawProj() {
-if(!Projectiles.empty())
-{
     for(int p=0;p<Projectiles.size();p++)
     {
         window.draw(Projectiles[p].getHitbox());
     }
 }
 
-
-}
 void game::UpdateEnemies()
 {
-
     sf::RectangleShape tmp(sf::Vector2f(GRIDSIZE, GRIDSIZE));
 
     for(int e=0;e<enemies.size();e++)
@@ -203,14 +199,22 @@ void game::SwapLevels()
         }
     }
 }
+
+//void game::didHit()
+//{
+//
+//}
+
 void game::HealthCheck()
 {
     if(!Projectiles.empty())
     {
         for(int p=0;p<Projectiles.size();p++)
         {
-            if(Projectiles[p].getHealth() < 1)
+
+            if(Projectiles[p].getHealth() <= 0)
             {
+                std::cout<<"projectile erased";
                 Projectiles.erase(Projectiles.begin() + p);
             }
         }

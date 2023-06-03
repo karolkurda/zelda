@@ -3,26 +3,32 @@
 //
 
 #include "projectile.h"
+#include <iostream>
 
 
 
 
 
 void projectile::Update() {
-    moveEntity(currDIR);
-    time -=1;
-    if(time < 1)
+
+    if(projectileSpeed.getElapsedTime().asMilliseconds() > 300)
     {
-        takeDMG(1000);
+        time=time-1;
+        moveEntity(currDIR);
+        projectileSpeed.restart();
+        if(time == 0) {
+            takeDMG(100);
+        }
     }
 }
+
+
 
 projectile::projectile(sf::Vector2f POS, directions dir, int dmg, int t) : entity(POS , dmg){
     currDIR = dir;
     time = t;
-    hitbox.setSize(sf::Vector2f(45 , 45));
+    hitbox.setSize(sf::Vector2f(20 , 20));
+    hitbox.setOrigin(sf::Vector2f(-15,-15));
     hitbox.setFillColor(sf::Color::Red);
-
-
 }
 
