@@ -51,6 +51,7 @@ void game::Loop() {
         }
         DrawProj();
         UpdateProjectiles();
+        didHit();
         UpdateEnemies();
         UpdateWalls();
         SwapLevels();
@@ -200,10 +201,16 @@ void game::SwapLevels()
     }
 }
 
-//void game::didHit()
-//{
-//
-//}
+void game::didHit() {
+    for (int p = 0; p < Projectiles.size(); p++) {
+        for (int e = 0; e < enemies.size(); e++) {
+            if (Projectiles[p].getHitbox().getGlobalBounds().intersects(enemies[e].getHitbox().getGlobalBounds())) {
+                enemies[p].takeDMG(100);
+                Projectiles[p].health = 0;
+            }
+        }
+    }
+}
 
 void game::HealthCheck()
 {

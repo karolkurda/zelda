@@ -27,6 +27,7 @@ void projectile::Update() {
 projectile::projectile(sf::Vector2f POS, directions dir, int dmg, int t) : entity(POS , dmg){
     currDIR = dir;
     time = t;
+    health=dmg;
     hitbox.setSize(sf::Vector2f(20 , 20));
     hitbox.setOrigin(sf::Vector2f(-15,-15));
     hitbox.setFillColor(sf::Color::Red);

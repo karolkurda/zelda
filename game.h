@@ -47,6 +47,8 @@ public:
     void SwapLevels();
 
     void HealthCheck();
+
+    void didHit();
 };
 
 

@@ -44,6 +44,7 @@ canSeePlayer = false;
 }
 
 enemy::enemy(sf::Vector2f pos, int hp, weapons wep) : living_obj(pos, hp, wep) {
+    health=hp;
 ShootCD = 700;
 walkCD = 1000;
 hitbox.setFillColor(sf::Color::Yellow);
