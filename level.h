@@ -17,6 +17,8 @@ public:
     sf::Vector2f getSpawnPosition();
 
     void getLevel(int lvl);
+
+    void setBounds();
 };
 
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "game.h"
 #include "enemy.h"
+#include "level.h"
 #include <SFML/Graphics.hpp>
 
     game::game(player P , sf::RenderWindow & win) : lunk(P) , window(win) {
@@ -52,6 +53,7 @@ void game::Loop() {
         DrawProj();
         UpdateProjectiles();
         didHit();
+        wallHit();
         UpdateEnemies();
         UpdateWalls();
         SwapLevels();
@@ -141,6 +143,7 @@ void game::UpdateEnemies()
             tmp.move(GRIDSIZE*Offsets[enemies[e].getCurrDirection()].x , GRIDSIZE*Offsets[enemies[e].getCurrDirection()].y);
             if(wallCheck(tmp)) {
                 enemies[e].walk(enemies[e].getCurrDirection());
+
             }
         }
 
@@ -200,12 +203,35 @@ void game::SwapLevels()
         }
     }
 }
+void game::wallHit() {
+    for (int w = 0; w < terrain.size(); w++) {
+        for (int p = 0; p < Projectiles.size(); p++) {
+            if (Projectiles[p].getHitbox().getGlobalBounds().intersects(terrain[w].getGlobalBounds()))
+            {
+                std::cout<<"jeblo w sciane\n";
+                Projectiles[p].health=0;
+            }
+        }
+    }
+}
+
+//void game::enemyWantsToEscape()
+//{
+//    for (int w = 0; w < terrain.size(); w++) {
+//        for (int e = 0; e < enemies.size(); e++) {
+//            if(enemies[e].getHitbox().getGlobalBounds().intersects(terrain[w].getGlobalBounds()))
+//            {
+//
+//            }
+//        }
+//    }
+//}
 
 void game::didHit() {
     for (int p = 0; p < Projectiles.size(); p++) {
         for (int e = 0; e < enemies.size(); e++) {
             if (Projectiles[p].getHitbox().getGlobalBounds().intersects(enemies[e].getHitbox().getGlobalBounds())) {
-                enemies[p].takeDMG(100);
+                enemies[e].takeDMG(100);
                 Projectiles[p].health = 0;
             }
         }
