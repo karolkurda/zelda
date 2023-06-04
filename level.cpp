@@ -37,7 +37,7 @@ level::level() {
 void level::setBounds(){
     sf::RectangleShape upperBound(sf::Vector2f(800,1));
     upperBound.setFillColor(sf::Color::Green);
-    upperBound.setPosition(0,0);
+    upperBound.setPosition(0,-10);
     terrain.push_back(upperBound);
 
     sf::RectangleShape lowerBound(sf::Vector2f(800,1));
@@ -47,7 +47,7 @@ void level::setBounds(){
 
     sf::RectangleShape leftBound(sf::Vector2f(1,600));
     leftBound.setFillColor(sf::Color::Green);
-    leftBound.setPosition(0,0);
+    leftBound.setPosition(-10,0);
     terrain.push_back(leftBound);
 
     sf::RectangleShape rightBound(sf::Vector2f(1,600));
@@ -83,7 +83,7 @@ void level::getLevel(int lvl) {
             terrain.push_back(tmp);
             tmp.setPosition(sf::Vector2f(400, 200));
             terrain.push_back(tmp);
-            enemy e1(sf::Vector2f(150, 0), 100, bow);
+            enemy e1(sf::Vector2f(150, 100), 100, bow);
             enemy e2(sf::Vector2f(500, 200), 100, sword);
             enemies.push_back(e1);
             enemies.push_back(e2);
