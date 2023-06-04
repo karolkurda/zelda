@@ -11,6 +11,7 @@ class game {
     std::vector<projectile> Projectiles;
     std::vector<enemy> enemies;
     std::vector<sf::RectangleShape> terrain;
+    std::vector<sf::RectangleShape> passages;
     player lunk;
     sf::RenderWindow & window;
     std::vector<sf::Vector2f> Offsets;
@@ -26,6 +27,7 @@ class game {
 
 public:
     void drawHud();
+
     game(player P , sf::RenderWindow & win);
     void Loop();
 

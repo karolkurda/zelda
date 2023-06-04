@@ -6,10 +6,12 @@
 #include <SFML/Graphics.hpp>
 #include "enemy.h"
 
-class level {
+
+class level{
     std::vector<sf::RectangleShape> terrain;
     std::vector<enemy> enemies;
-
+    std::vector<sf::RectangleShape> passages;
+    bool passageState;
 public:
     level();
     std::vector<sf::RectangleShape> getTerrain();
@@ -19,6 +21,14 @@ public:
     void getLevel(int lvl);
 
     void setBounds();
+
+    void setPassages();
+
+    std::vector<sf::RectangleShape> getPassages();
+
+    void removeBounds();
+
+    bool canGoNext();
 };
 
 

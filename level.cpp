@@ -1,3 +1,4 @@
+#include <iostream>
 #include "level.h"
 #include "enemy.h"
 
@@ -12,26 +13,7 @@ level::level() {
     enemy e2(sf::Vector2f(500,200),100, sword);
     enemies.push_back(e1);
     enemies.push_back(e2);
-
-    sf::RectangleShape upperBound(sf::Vector2f(800,1));
-    upperBound.setFillColor(sf::Color::Green);
-    upperBound.setPosition(0,0);
-    terrain.push_back(upperBound);
-
-    sf::RectangleShape lowerBound(sf::Vector2f(800,1));
-    lowerBound.setFillColor(sf::Color::Green);
-    lowerBound.setPosition(0,600);
-    terrain.push_back(lowerBound);
-
-    sf::RectangleShape leftBound(sf::Vector2f(1,600));
-    leftBound.setFillColor(sf::Color::Green);
-    leftBound.setPosition(0,0);
-    terrain.push_back(leftBound);
-
-    sf::RectangleShape rightBound(sf::Vector2f(1,600));
-    rightBound.setFillColor(sf::Color::Green);
-    rightBound.setPosition(800,0);
-    terrain.push_back(rightBound);
+    passageState=false;
 
 }
 void level::setBounds(){
@@ -56,6 +38,36 @@ void level::setBounds(){
     terrain.push_back(rightBound);
 }
 
+void level::setPassages(){
+    sf::RectangleShape tmp(sf::Vector2f (1 , 600));
+    tmp.setPosition(1, 0);
+    passages.push_back(tmp);
+    tmp.setPosition(799 , 0);
+    passages.push_back(tmp);
+}
+
+
+
+bool level::canGoNext(){
+    if (getEnemies().empty()) passageState = true;
+    return passageState;
+}
+
+//bool level::isPassageOpen() const{
+//    return passageState;
+//}
+
+void level::removeBounds(){
+    if (passageState){
+        std::cout<<"otwarte\n";
+        terrain.erase(terrain.end());
+        terrain.erase(terrain.end());
+    }
+}
+
+std::vector<sf::RectangleShape> level::getPassages(){
+    return passages;
+}
 
 std::vector<sf::RectangleShape> level::getTerrain() {
     return terrain;
@@ -76,6 +88,12 @@ void level::getLevel(int lvl) {
             terrain.clear();
             enemies.clear();
             setBounds();
+            setPassages();
+            removeBounds();
+            canGoNext();
+            //isPassageOpen();
+
+
             sf::RectangleShape tmp(sf::Vector2f(150, 50));
 
 
@@ -93,6 +111,9 @@ void level::getLevel(int lvl) {
             terrain.clear();
             enemies.clear();
             setBounds();
+            setPassages();
+            canGoNext();
+            removeBounds();
             sf::RectangleShape tmp(sf::Vector2f(50, 50));
             tmp.setPosition(300, 200);
             terrain.push_back(tmp);

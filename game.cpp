@@ -12,22 +12,20 @@
     drawBow.setPosition(700 , 50);
     levels.getLevel(0);
     currLevel = 0;
-    sf::RectangleShape tmp(sf::Vector2f (GRIDSIZE , window.getSize().y));
+
     terrain = levels.getTerrain();
     enemies = levels.getEnemies();
-    tmp.setPosition(0, 0);
-    nextLevel.push_back(tmp);
-    tmp.setPosition(800 , 0);
-    nextLevel.push_back(tmp);
+    passages = levels.getPassages();
+
     Offsets.push_back(sf::Vector2f(0 , -1));
     Offsets.push_back(sf::Vector2f(0 , 1));
     Offsets.push_back(sf::Vector2f(-1 , 0));
     Offsets.push_back(sf::Vector2f(1 , 0));
     std::cout<<terrain.size();
     std::cout<<enemies.size();
-    swordTexture.loadFromFile("textures/sword.png");
-    bowTexture.loadFromFile("textures/bow.png");
-    heartTexture.loadFromFile("textures/heart.png");
+    //swordTexture.loadFromFile("textures/sword.png");
+    //bowTexture.loadFromFile("textures/bow.png");
+    //heartTexture.loadFromFile("textures/heart.png");
 
 }
 void game::Loop() {
@@ -47,18 +45,20 @@ void game::Loop() {
         window.draw(lunk.getHitbox());
         if(gameCLOCK.getElapsedTime().asMilliseconds() > 70)
         {
-
+            //std::cout<<enemies.size(); //to bedzie dobre do ogarniecia ile zostalo przeciwnikow
             gameCLOCK.restart();
         }
+        //SwapLevels();
         DrawProj();
         UpdateProjectiles();
         didHit();
         wallHit();
         UpdateEnemies();
         UpdateWalls();
+
+        window.draw(passages[0]);
+        window.draw(passages[1]);
         SwapLevels();
-        window.draw(nextLevel[0]);
-        window.draw(nextLevel[1]);
         window.display();
     }
 
@@ -180,21 +180,21 @@ bool game::wallCheck(sf::RectangleShape tmp)
 }
 void game::SwapLevels()
 {
-    if(lunk.getHitbox().getGlobalBounds().intersects(nextLevel[0].getGlobalBounds()))
+    if(lunk.getHitbox().getGlobalBounds().intersects(passages[0].getGlobalBounds()))
     {
         if(currLevel > 0) {
-
+            std::cout<<"prev";
             levels.getLevel(currLevel - 1);
             currLevel = currLevel - 1;
             terrain = levels.getTerrain();
             enemies = levels.getEnemies();
-            lunk.setPosition(750, lunk.getHitbox().getPosition().y);
+            lunk.setPosition(700, lunk.getHitbox().getPosition().y);
         }
     }
-    if(lunk.getHitbox().getGlobalBounds().intersects(nextLevel[1].getGlobalBounds()))
+    if(lunk.getHitbox().getGlobalBounds().intersects(passages[1].getGlobalBounds()))
     {
         if(currLevel < 4) {
-
+            std::cout<<"next";
             levels.getLevel(currLevel + 1);
             currLevel = currLevel + 1;
             terrain = levels.getTerrain();
@@ -208,7 +208,6 @@ void game::wallHit() {
         for (int p = 0; p < Projectiles.size(); p++) {
             if (Projectiles[p].getHitbox().getGlobalBounds().intersects(terrain[w].getGlobalBounds()))
             {
-                std::cout<<"jeblo w sciane\n";
                 Projectiles[p].health=0;
             }
         }
@@ -300,3 +299,4 @@ void game::lunkDied() {
     enemies = levels.getEnemies();
     lunk.setPosition(50, lunk.getHitbox().getPosition().y);
 }
+
