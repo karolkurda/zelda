@@ -10,6 +10,7 @@ class game {
 
     std::vector<projectile> Projectiles;
     std::vector<enemy> enemies;
+    bool passageState = false;
     std::vector<sf::RectangleShape> terrain;
     std::vector<sf::RectangleShape> passages;
     player lunk;
@@ -53,6 +54,8 @@ public:
     void didHit();
 
     void wallHit();
+
+    void canGo();
 };
 
 

@@ -14,7 +14,7 @@ level::level() {
     enemies.push_back(e1);
     enemies.push_back(e2);
     passageState=false;
-
+    std::cout<<"otwarte czy zamkniete: "<<passageState<<std::endl;
 }
 void level::setBounds(){
     sf::RectangleShape upperBound(sf::Vector2f(800,1));
@@ -49,7 +49,8 @@ void level::setPassages(){
 
 
 bool level::canGoNext(){
-    if (getEnemies().empty()) passageState = true;
+    if (getEnemies().size() == 0) passageState = true;
+    std::cout<<"stan przejscia"<<passageState;
     return passageState;
 }
 
@@ -57,11 +58,18 @@ bool level::canGoNext(){
 //    return passageState;
 //}
 
+//void level::removeBounds(){
+//    if (passageState){
+//        std::cout<<"otwarte\n";
+//        terrain.erase(terrain.end());
+//        terrain.erase(terrain.end());
+//    }
+//}
+
 void level::removeBounds(){
     if (passageState){
         std::cout<<"otwarte\n";
-        terrain.erase(terrain.end());
-        terrain.erase(terrain.end());
+        setPassages();
     }
 }
 
@@ -87,10 +95,9 @@ void level::getLevel(int lvl) {
         case 0: {
             terrain.clear();
             enemies.clear();
+
             setBounds();
-            setPassages();
-            removeBounds();
-            canGoNext();
+
             //isPassageOpen();
 
 
@@ -105,6 +112,10 @@ void level::getLevel(int lvl) {
             enemy e2(sf::Vector2f(500, 200), 100, sword);
             enemies.push_back(e1);
             enemies.push_back(e2);
+            setPassages();
+            canGoNext();
+            removeBounds();
+
             return;
         }
         case 1: {

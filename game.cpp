@@ -16,6 +16,7 @@
     terrain = levels.getTerrain();
     enemies = levels.getEnemies();
     passages = levels.getPassages();
+    passageState = levels.canGoNext();
 
     Offsets.push_back(sf::Vector2f(0 , -1));
     Offsets.push_back(sf::Vector2f(0 , 1));
@@ -45,6 +46,7 @@ void game::Loop() {
         window.draw(lunk.getHitbox());
         if(gameCLOCK.getElapsedTime().asMilliseconds() > 70)
         {
+
             //std::cout<<enemies.size(); //to bedzie dobre do ogarniecia ile zostalo przeciwnikow
             gameCLOCK.restart();
         }
@@ -55,10 +57,13 @@ void game::Loop() {
         wallHit();
         UpdateEnemies();
         UpdateWalls();
-
+        canGo();
+        std::cout<<"stan: "<<passageState<<std::endl;
+        if (passageState){SwapLevels();}
         window.draw(passages[0]);
         window.draw(passages[1]);
-        SwapLevels();
+
+
         window.display();
     }
 
@@ -189,6 +194,7 @@ void game::SwapLevels()
             terrain = levels.getTerrain();
             enemies = levels.getEnemies();
             lunk.setPosition(700, lunk.getHitbox().getPosition().y);
+            passageState=0;
         }
     }
     if(lunk.getHitbox().getGlobalBounds().intersects(passages[1].getGlobalBounds()))
@@ -200,6 +206,7 @@ void game::SwapLevels()
             terrain = levels.getTerrain();
             enemies = levels.getEnemies();
             lunk.setPosition(50, lunk.getHitbox().getPosition().y);
+            passageState=0;
         }
     }
 }
@@ -300,3 +307,6 @@ void game::lunkDied() {
     lunk.setPosition(50, lunk.getHitbox().getPosition().y);
 }
 
+void game::canGo(){
+    if(enemies.size()==0) passageState =1;
+}

@@ -11,7 +11,7 @@ class level{
     std::vector<sf::RectangleShape> terrain;
     std::vector<enemy> enemies;
     std::vector<sf::RectangleShape> passages;
-    bool passageState;
+    bool passageState=false;
 public:
     level();
     std::vector<sf::RectangleShape> getTerrain();
