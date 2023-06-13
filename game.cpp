@@ -319,6 +319,7 @@ void game::HealthCheck()
             for (int e = 0; e < enemies.size(); e++) {
                 if (enemies[e].getHealth() < 1) {
                     enemies.erase(enemies.begin() + e);
+                    lunk.arrowCount = (lunk.arrowCount > 9 ? 20 : lunk.arrowCount + 10);
                 }
             }
         }
