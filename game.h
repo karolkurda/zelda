@@ -13,6 +13,7 @@ class game {
     bool passageState = false;
     std::vector<sf::RectangleShape> terrain;
     std::vector<sf::RectangleShape> passages;
+    std::vector<sf::Sprite> podlogaVect;
     player lunk;
     sf::RenderWindow & window;
     std::vector<sf::Vector2f> Offsets;

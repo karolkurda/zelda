@@ -46,6 +46,18 @@ void level::setPassages(){
     passages.push_back(tmp);
 }
 
+void level::setPodloga(){
+    sf::RectangleShape podloga(sf::Vector2f(800,600));
+    sf::Sprite podlogas;
+
+    sf::Texture podlogaTexture;
+    podlogaTexture.loadFromFile("link.png",sf::IntRect(1,1,20,20));
+    podlogas.setTexture(podlogaTexture);
+    podloga.setTexture(&podlogaTexture);
+    podloga.setPosition(0,0);
+    //podloga.setFillColor(sf::Color::Cyan);
+    podlogaVect.push_back(podlogas);
+}
 
 
 bool level::canGoNext(){
@@ -85,6 +97,10 @@ std::vector<enemy> level::getEnemies() {
     return enemies;
 }
 
+std::vector<sf::Sprite> level::getPodloga() {
+    return podlogaVect;
+}
+
 sf::Vector2f level::getSpawnPosition() {
     return sf::Vector2f();
 }
@@ -103,6 +119,7 @@ void level::getLevel(int lvl) {
 
             sf::RectangleShape tmp(sf::Vector2f(150, 50));
 
+            setPodloga();
 
             tmp.setPosition(200, 200);
             terrain.push_back(tmp);

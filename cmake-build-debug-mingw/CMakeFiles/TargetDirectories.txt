@@ -1,0 +1,3 @@
+C:/Users/Karol/Desktop/zelda/cmake-build-debug-mingw/CMakeFiles/zelda.dir
+C:/Users/Karol/Desktop/zelda/cmake-build-debug-mingw/CMakeFiles/edit_cache.dir
+C:/Users/Karol/Desktop/zelda/cmake-build-debug-mingw/CMakeFiles/rebuild_cache.dir

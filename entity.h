@@ -12,6 +12,8 @@ protected:
 
     sf::RectangleShape hitbox;
     sf::Texture hitboxTexture;
+    directions dir;
+    directions getDIR();
 
 public:
 

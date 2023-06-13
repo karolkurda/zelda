@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\zelda.dir/objects.a
+C:\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\ar.exe qc CMakeFiles\zelda.dir/objects.a @CMakeFiles\zelda.dir\objects1
+C:\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\c++.exe -g -Wl,--whole-archive CMakeFiles\zelda.dir/objects.a -Wl,--no-whole-archive -o zelda.exe -Wl,--out-implib,libzelda.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\zelda.dir\linkLibs.rsp

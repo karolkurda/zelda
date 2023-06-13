@@ -11,6 +11,7 @@ class level{
     std::vector<sf::RectangleShape> terrain;
     std::vector<enemy> enemies;
     std::vector<sf::RectangleShape> passages;
+    std::vector<sf::Sprite> podlogaVect;
     bool passageState=false;
 public:
     level();
@@ -29,6 +30,10 @@ public:
     void removeBounds();
 
     bool canGoNext();
+
+    void setPodloga();
+
+    std::vector<sf::Sprite> getPodloga();
 };
 
 

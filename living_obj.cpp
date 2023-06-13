@@ -25,19 +25,19 @@ sf::Vector2f tmp;
 
             case UP:
                 tmp = sf::Vector2f(hitbox.getPosition().x, hitbox.getPosition().y - (GRIDSIZE + 5));
-                hitbox.setRotation(180.f);
+                //hitbox.setRotation(180.f);
                 break;
             case DOWN:
                 tmp = sf::Vector2f(hitbox.getPosition().x, hitbox.getPosition().y + (GRIDSIZE+ 5));
-                hitbox.setRotation(0.f);
+                //hitbox.setRotation(0.f);
                 break;
             case LEFT:
                 tmp = sf::Vector2f(hitbox.getPosition().x - (GRIDSIZE + 5), hitbox.getPosition().y);
-                hitbox.setRotation(90.f);
+                //hitbox.setRotation(90.f);
                 break;
             case RIGHT:
                 tmp = sf::Vector2f(hitbox.getPosition().x + (GRIDSIZE + 5), hitbox.getPosition().y);
-                hitbox.setRotation(270.f);
+                //hitbox.setRotation(270.f);
                 break;
 
         }
@@ -71,4 +71,8 @@ bool living_obj::CanShoot() {
 
 weapons living_obj::getCurrWeapon() {
     return currentWeapon;
+}
+
+directions living_obj::getDir() {
+    return dir;
 }

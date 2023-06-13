@@ -19,8 +19,10 @@ protected:
     float walkCD;
     float ShootCD;
     weapons currentWeapon;
+    directions dir;
 public:
     living_obj(sf::Vector2f position, int hp, weapons W);
+    directions getDir();
 
     void walk(directions dir);
     projectile attack(directions DIR);

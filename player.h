@@ -9,8 +9,12 @@ public:
     int arrowCount;
     player(sf::Vector2f position, int hp, int arrows);
     void swapWeapon();
+    sf::Texture linkUpTexture, linkDownTexture, linkLeftTexture, linkRightTexture;
 
 
+    void swapTextures();
+
+    void sterowanie();
 };
 
 

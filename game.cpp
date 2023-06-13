@@ -8,8 +8,8 @@
     heart.setSize(sf::Vector2f(50 , 50));
     drawBow.setSize(sf::Vector2f(50 , 50));
     drawSword.setSize(sf::Vector2f(50 , 50));
-    drawSword.setPosition(700 , 50);
-    drawBow.setPosition(700 , 50);
+
+
     levels.getLevel(0);
     currLevel = 0;
 
@@ -17,6 +17,7 @@
     enemies = levels.getEnemies();
     passages = levels.getPassages();
     passageState = levels.canGoNext();
+    podlogaVect = levels.getPodloga();
 
     Offsets.push_back(sf::Vector2f(0 , -1));
     Offsets.push_back(sf::Vector2f(0 , 1));
@@ -24,11 +25,17 @@
     Offsets.push_back(sf::Vector2f(1 , 0));
     std::cout<<terrain.size();
     std::cout<<enemies.size();
-    //swordTexture.loadFromFile("textures/sword.png");
-    //bowTexture.loadFromFile("textures/bow.png");
-    heartTexture.loadFromFile("34x34icons.png", sf::IntRect(204,476,32,32));
+
+    swordTexture.loadFromFile("items.png", sf::IntRect(280,120,20,20));
+    drawSword.setTexture(&swordTexture);
+
+    bowTexture.loadFromFile("items.png", sf::IntRect(320,0,20,20));
+    drawBow.setTexture(&bowTexture);
+
+    heartTexture.loadFromFile("items.png", sf::IntRect(240,40,15,15));
     heart.setTexture(&heartTexture);
-    //heart.update(heartTexture);
+
+
 
 }
 void game::Loop() {
@@ -42,9 +49,12 @@ void game::Loop() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-     HealthCheck();
+
+        HealthCheck();
         control();
+
         window.clear();
+        window.draw(podlogaVect[0]);
         window.draw(lunk.getHitbox());
         if(gameCLOCK.getElapsedTime().asMilliseconds() > 70)
         {
@@ -54,13 +64,16 @@ void game::Loop() {
         }
         //SwapLevels();
         drawHud();
+        lunk.sterowanie();
         DrawProj();
         UpdateProjectiles();
         didHit();
         wallHit();
         UpdateEnemies();
         UpdateWalls();
+
         canGo();
+
         if (passageState){SwapLevels();}
         window.draw(passages[0]);
         window.draw(passages[1]);
@@ -86,6 +99,7 @@ if((lunk.getShootCooldown().asMilliseconds() > lunk.getShootCD()/2))
         tmp.move(sf::Vector2f(0, -GRIDSIZE));
         if(wallCheck(tmp)) {
             lunk.walk(UP);
+            lunk.swapTextures();
             return;
         }
     }
@@ -94,6 +108,7 @@ if((lunk.getShootCooldown().asMilliseconds() > lunk.getShootCD()/2))
         tmp.move(sf::Vector2f(0 , GRIDSIZE));
         if(wallCheck(tmp)) {
             lunk.walk(DOWN);
+            lunk.swapTextures();
             return;
         }
     }
@@ -101,6 +116,7 @@ if((lunk.getShootCooldown().asMilliseconds() > lunk.getShootCD()/2))
         tmp.move(sf::Vector2f(-GRIDSIZE , 0));
         if(wallCheck(tmp)) {
             lunk.walk(LEFT);
+            lunk.swapTextures();
             return;
         }
     }
@@ -109,6 +125,7 @@ if((lunk.getShootCooldown().asMilliseconds() > lunk.getShootCD()/2))
         tmp.move(sf::Vector2f(GRIDSIZE , 0));
         if(wallCheck(tmp)) {
             lunk.walk(RIGHT);
+            lunk.swapTextures();
             return;
         }
     }
@@ -311,15 +328,16 @@ void game::HealthCheck()
 
 void game::drawHud() {
 
-    switch (lunk.getCurrWeapon()) {
-
-        case sword:
-            window.draw(drawSword);
-            break;
-        case bow:
-            window.draw(drawBow);
-            break;
+    if (lunk.getCurrWeapon() == sword){
+        drawSword.setPosition(700 , 615);
+        window.draw(drawSword);
     }
+    else if (lunk.getCurrWeapon() == bow)
+    {
+        drawBow.setPosition(700 , 615);
+        window.draw(drawBow);
+    }
+
     for (int i = 0; i <= lunk.getHealth()/10; i++)
     {
         heart.setPosition(0 + (i * heart.getSize().x) + 10 * i , 615 );

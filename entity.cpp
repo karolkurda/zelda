@@ -23,19 +23,19 @@ void entity::moveEntity(directions dir) {
     switch (dir) {
         case UP:
             hitbox.move(sf::Vector2f(0,-GRIDSIZE));
-            hitbox.setRotation(180.f);
+            //hitbox.setRotation(180.f);
             break;
         case DOWN:
             hitbox.move(sf::Vector2f(0,GRIDSIZE));
-            hitbox.setRotation(0.f);
+            //hitbox.setRotation(0.f);
             break;
         case LEFT:
             hitbox.move(sf::Vector2f(-GRIDSIZE,0));
-            hitbox.setRotation(90.f);
+            //hitbox.setRotation(90.f);
             break;
         case RIGHT:
             hitbox.move(sf::Vector2f(GRIDSIZE,0));
-            hitbox.setRotation(270.f);
+            //hitbox.setRotation(270.f);
             break;
         default:
             break;
@@ -64,4 +64,7 @@ void entity::setPosition(float x, float y) {
 hitbox.setPosition(x , y);
 }
 
+directions entity::getDIR() {
+    return dir;
+}
 

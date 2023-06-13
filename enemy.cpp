@@ -10,8 +10,8 @@ void enemy::lookForPlayer(std::vector<sf::RectangleShape> terrain, sf::Rectangle
     Offsets.push_back(sf::Vector2f(-1 , 0));
     Offsets.push_back(sf::Vector2f(1 , 0));
 
-    hitboxTexture.loadFromFile("papa.png");
-    hitbox.setTexture(&hitboxTexture);
+    //hitboxTexture.loadFromFile("papa.png");
+    //hitbox.setTexture(&hitboxTexture);
     //hitbox.setRotation(90.f);
 
     sf::RectangleShape tmp;
