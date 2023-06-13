@@ -11,7 +11,7 @@
 
 void projectile::Update() {
 
-    if(projectileSpeed.getElapsedTime().asMilliseconds() > 300)
+    if(projectileSpeed.getElapsedTime().asMilliseconds() > 150)
     {
         time=time-1;
         moveEntity(currDIR);

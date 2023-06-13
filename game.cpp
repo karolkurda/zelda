@@ -58,7 +58,6 @@ void game::Loop() {
         UpdateEnemies();
         UpdateWalls();
         canGo();
-        std::cout<<"stan: "<<passageState<<std::endl;
         if (passageState){SwapLevels();}
         window.draw(passages[0]);
         window.draw(passages[1]);
@@ -145,10 +144,15 @@ void game::UpdateEnemies()
             {
                 Projectiles.push_back(enemies[e].attack(enemies[e].getCurrDirection()));
             }
+            else
+            {
+
+            }
+            if(enemies[e].getShootCooldown().asMilliseconds() > enemies[e].getShootCD()/2) {
             tmp.move(GRIDSIZE*Offsets[enemies[e].getCurrDirection()].x , GRIDSIZE*Offsets[enemies[e].getCurrDirection()].y);
             if(wallCheck(tmp)) {
                 enemies[e].walk(enemies[e].getCurrDirection());
-
+            }
             }
         }
 
@@ -266,7 +270,7 @@ void game::HealthCheck()
             }
         }
 
-        if(lunk.getHealth()<1)
+        if(lunk.getHealth()<80)
         {
          lunkDied();
         }
