@@ -5,6 +5,7 @@
 
 entity::entity(sf::Vector2f position, int hp) {
     health=hp;
+    hp=0;
     hitbox.setPosition(position);
     hitbox.setFillColor(sf::Color::White);
     hitbox.setSize(sf::Vector2f(50, 50));

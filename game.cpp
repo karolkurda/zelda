@@ -26,7 +26,9 @@
     std::cout<<enemies.size();
     //swordTexture.loadFromFile("textures/sword.png");
     //bowTexture.loadFromFile("textures/bow.png");
-    //heartTexture.loadFromFile("textures/heart.png");
+    heartTexture.loadFromFile("34x34icons.png", sf::IntRect(204,476,32,32));
+    heart.setTexture(&heartTexture);
+    //heart.update(heartTexture);
 
 }
 void game::Loop() {
@@ -51,6 +53,7 @@ void game::Loop() {
             gameCLOCK.restart();
         }
         //SwapLevels();
+        drawHud();
         DrawProj();
         UpdateProjectiles();
         didHit();
@@ -61,7 +64,7 @@ void game::Loop() {
         if (passageState){SwapLevels();}
         window.draw(passages[0]);
         window.draw(passages[1]);
-
+        std::cout<<"zdrowie: "<<lunk.health<<std::endl;
 
         window.display();
     }
@@ -144,10 +147,7 @@ void game::UpdateEnemies()
             {
                 Projectiles.push_back(enemies[e].attack(enemies[e].getCurrDirection()));
             }
-            else
-            {
 
-            }
             if(enemies[e].getShootCooldown().asMilliseconds() > enemies[e].getShootCD()/2) {
             tmp.move(GRIDSIZE*Offsets[enemies[e].getCurrDirection()].x , GRIDSIZE*Offsets[enemies[e].getCurrDirection()].y);
             if(wallCheck(tmp)) {
@@ -239,12 +239,18 @@ void game::wallHit() {
 
 void game::didHit() {
     for (int p = 0; p < Projectiles.size(); p++) {
+        if(Projectiles[p].getHitbox().getGlobalBounds().intersects(lunk.getHitbox().getGlobalBounds())){
+            lunk.takeDMG(Projectiles[p].getHealth());
+            Projectiles[p].health = 0;
+        }
         for (int e = 0; e < enemies.size(); e++) {
             if (Projectiles[p].getHitbox().getGlobalBounds().intersects(enemies[e].getHitbox().getGlobalBounds())) {
-                enemies[e].takeDMG(100);
+                enemies[e].takeDMG(Projectiles[p].getHealth());
+                std::cout << Projectiles[p].getHealth();
                 Projectiles[p].health = 0;
             }
         }
+
     }
 }
 
@@ -270,7 +276,7 @@ void game::HealthCheck()
             }
         }
 
-        if(lunk.getHealth()<80)
+        if(lunk.getHealth()<1)
         {
          lunkDied();
         }
@@ -288,7 +294,7 @@ void game::drawHud() {
             window.draw(drawBow);
             break;
     }
-    for (int i = 0; i < lunk.getHealth(); i++)
+    for (int i = 0; i <= lunk.getHealth()/10; i++)
     {
         heart.setPosition(800 - (i * heart.getSize().x) - 10 * i , 500 );
         window.draw(heart);
@@ -301,14 +307,15 @@ void game::lunkDied() {
     std::cout<<"resetlunkdied"<<std::endl;
     window.draw(gameOverScreen);
     sf::Clock deathTimer;
-    while (deathTimer.getElapsedTime().asMicroseconds() < 3000) {}
-
-  //  playerProjectiles.clear();
     levels.getLevel(0);
     currLevel = 0;
     terrain = levels.getTerrain();
     enemies = levels.getEnemies();
     lunk.setPosition(50, lunk.getHitbox().getPosition().y);
+    lunk.health = 50;
+
+  //  playerProjectiles.clear();
+
 }
 
 void game::canGo(){

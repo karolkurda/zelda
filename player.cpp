@@ -3,7 +3,7 @@
 #include <iostream>
 
 player::player(sf::Vector2f position, int hp) : living_obj(position, hp , bow) {
-health = 100;
+health = 0;
 
 }
 void player::swapWeapon()

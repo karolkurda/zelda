@@ -62,7 +62,7 @@ float living_obj::getShootCD(){
 }
 
 bool living_obj::CanShoot() {
-    return (ShootCooldown.getElapsedTime().asMilliseconds() > ShootCD);
+    return (ShootCooldown.getElapsedTime().asMilliseconds() > ShootCD*1.5);
 }
 
 weapons living_obj::getCurrWeapon() {
