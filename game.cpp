@@ -74,9 +74,13 @@ void game::Loop() {
 
 void game::control()
 {
+
 sf::RectangleShape tmp(sf::Vector2f(50 , 50));
 tmp.setPosition(lunk.getHitbox().getPosition());
 tmp.setOrigin(sf::Vector2f(25,25));
+
+if((lunk.getShootCooldown().asMilliseconds() > lunk.getShootCD()/2))
+{
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 
         tmp.move(sf::Vector2f(0, -GRIDSIZE));
@@ -108,6 +112,8 @@ tmp.setOrigin(sf::Vector2f(25,25));
             return;
         }
     }
+}
+
     if(lunk.getShootCooldown().asMilliseconds() > lunk.getShootCD()) {
 
 
