@@ -7,7 +7,7 @@
 int main() {
 
     srand(time(0));
-    player p1(sf::Vector2f(300 , 300), 50);
+    player p1(sf::Vector2f(300 , 300), 50,20);
 
     sf::RenderWindow window(sf::VideoMode(800, 680), "Zelda");
     game g1(p1,window);

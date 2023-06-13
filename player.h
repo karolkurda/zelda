@@ -6,7 +6,8 @@
 class player : public living_obj {
 sf::Clock swapCooldown;
 public:
-    player(sf::Vector2f position, int hp);
+    int arrowCount;
+    player(sf::Vector2f position, int hp, int arrows);
     void swapWeapon();
 
 

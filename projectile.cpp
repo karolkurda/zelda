@@ -28,8 +28,8 @@ projectile::projectile(sf::Vector2f POS, directions dir, int dmg, int t) : entit
     currDIR = dir;
     time = t;
     health=dmg;
-    hitbox.setSize(sf::Vector2f(20 , 20));
-    hitbox.setOrigin(sf::Vector2f(10,10));
+    hitbox.setSize(sf::Vector2f(32 , 32));
+    hitbox.setOrigin(sf::Vector2f(16,16));
 
     hitbox.setFillColor(sf::Color::Red);
 }

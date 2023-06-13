@@ -2,8 +2,9 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
 
-player::player(sf::Vector2f position, int hp) : living_obj(position, hp , bow) {
+player::player(sf::Vector2f position, int hp, int arrows) : living_obj(position, hp , bow) {
 health = 0;
+    arrowCount = arrows;
 
 }
 void player::swapWeapon()

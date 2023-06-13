@@ -109,15 +109,33 @@ tmp.setOrigin(sf::Vector2f(25,25));
         }
     }
     if(lunk.getShootCooldown().asMilliseconds() > lunk.getShootCD()) {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) Projectiles.push_back(lunk.attack(UP));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) Projectiles.push_back(lunk.attack(DOWN));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) Projectiles.push_back(lunk.attack(LEFT));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) Projectiles.push_back(lunk.attack(RIGHT));
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) lunk.swapWeapon();
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (lunk.getCurrWeapon() != bow || lunk.arrowCount > 0)) {
+            Projectiles.push_back(lunk.attack(UP));
+            if (lunk.getCurrWeapon() == bow) lunk.arrowCount -= 1;
+            std::cout << "arrows: " << lunk.arrowCount << std::endl;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (lunk.getCurrWeapon() != bow || lunk.arrowCount > 0)) {
+            Projectiles.push_back(lunk.attack(DOWN));
+            if (lunk.getCurrWeapon() == bow) lunk.arrowCount -= 1;
+            std::cout << "arrows: " << lunk.arrowCount << std::endl;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (lunk.getCurrWeapon() != bow || lunk.arrowCount > 0)) {
+            Projectiles.push_back(lunk.attack(LEFT));
+            if (lunk.getCurrWeapon() == bow) lunk.arrowCount -= 1;
+            std::cout << "arrows: " << lunk.arrowCount << std::endl;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && (lunk.getCurrWeapon() != bow || lunk.arrowCount > 0)) {
+            Projectiles.push_back(lunk.attack(RIGHT));
+            if (lunk.getCurrWeapon() == bow) lunk.arrowCount -= 1;
+            std::cout << "arrows: " << lunk.arrowCount << std::endl;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) lunk.swapWeapon();
+    }
 }
-}
+
 void game::UpdateProjectiles() {
         if(!Projectiles.empty())
         {
@@ -146,6 +164,7 @@ void game::UpdateEnemies()
         {
             if(enemies[e].CanShoot())
             {
+
                 Projectiles.push_back(enemies[e].attack(enemies[e].getCurrDirection()));
             }
 
@@ -314,6 +333,7 @@ void game::lunkDied() {
     enemies = levels.getEnemies();
     lunk.setPosition(225, 425);
     lunk.health = 50;
+    lunk.arrowCount = 20;
 
   //  playerProjectiles.clear();
 

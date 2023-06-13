@@ -17,6 +17,7 @@ void enemy::lookForPlayer(std::vector<sf::RectangleShape> terrain, sf::Rectangle
     sf::RectangleShape tmp;
     tmp.setSize(sf::Vector2f(GRIDSIZE , GRIDSIZE));
     tmp.setPosition(hitbox.getPosition());
+    tmp.setOrigin(sf::Vector2f(25,25));
     bool terCheck;
     for(int i=0;i<=3;i++)
     {
@@ -59,7 +60,7 @@ walkCD = 1000;
 }
 
 bool enemy::getCanSeePlayer() {
-    return (canSeePlayer && reactionTime.getElapsedTime().asMilliseconds() > 500);
+    return (canSeePlayer && reactionTime.getElapsedTime().asMilliseconds() > 1000);
 }
 
 directions enemy::getCurrDirection() {
