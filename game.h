@@ -13,18 +13,18 @@ class game {
     bool passageState = false;
     std::vector<sf::RectangleShape> terrain;
     std::vector<sf::RectangleShape> passages;
-    std::vector<sf::Sprite> podlogaVect;
+    std::vector<sf::RectangleShape> podlogaVect;
     player lunk;
     sf::RenderWindow & window;
     std::vector<sf::Vector2f> Offsets;
     level levels;
     std::vector<sf::RectangleShape> nextLevel;
     int currLevel;
-    sf::RectangleShape heart;
+    sf::RectangleShape heart, podloga;
     sf::RectangleShape drawBow;
     sf::RectangleShape drawSword;
     sf::RectangleShape gameOverScreen;
-    sf::Texture swordTexture, bowTexture, heartTexture;
+    sf::Texture swordTexture, bowTexture, heartTexture, podlogaTexture;
 
 
 public:

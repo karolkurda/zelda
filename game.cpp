@@ -35,7 +35,11 @@
     heartTexture.loadFromFile("items.png", sf::IntRect(240,40,15,15));
     heart.setTexture(&heartTexture);
 
-
+        sf::RectangleShape podloga(sf::Vector2f(800,600));
+        sf::Texture podlogaTexture;
+        podlogaTexture.loadFromFile("mapa.png");
+        podloga.setTexture(&podlogaTexture);
+        podloga.setPosition(0,0);
 
 }
 void game::Loop() {
@@ -54,7 +58,7 @@ void game::Loop() {
         control();
 
         window.clear();
-        window.draw(podlogaVect[0]);
+        window.draw(podloga);
         window.draw(lunk.getHitbox());
         if(gameCLOCK.getElapsedTime().asMilliseconds() > 70)
         {

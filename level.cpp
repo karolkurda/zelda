@@ -15,6 +15,7 @@ level::level() {
     enemies.push_back(e2);
     passageState=false;
     std::cout<<"otwarte czy zamkniete: "<<passageState<<std::endl;
+
 }
 void level::setBounds(){
     sf::RectangleShape upperBound(sf::Vector2f(800,1));
@@ -47,16 +48,16 @@ void level::setPassages(){
 }
 
 void level::setPodloga(){
-    sf::RectangleShape podloga(sf::Vector2f(800,600));
-    sf::Sprite podlogas;
 
-    sf::Texture podlogaTexture;
-    podlogaTexture.loadFromFile("link.png",sf::IntRect(1,1,20,20));
-    podlogas.setTexture(podlogaTexture);
-    podloga.setTexture(&podlogaTexture);
-    podloga.setPosition(0,0);
+   // sf::Sprite sprite(std::string "map.png")
+   // {
+   //
+   //     return sf::Sprite(podlogaTexture);
+   // }
+
+
     //podloga.setFillColor(sf::Color::Cyan);
-    podlogaVect.push_back(podlogas);
+
 }
 
 
@@ -97,7 +98,7 @@ std::vector<enemy> level::getEnemies() {
     return enemies;
 }
 
-std::vector<sf::Sprite> level::getPodloga() {
+std::vector<sf::RectangleShape> level::getPodloga() {
     return podlogaVect;
 }
 
@@ -106,6 +107,8 @@ sf::Vector2f level::getSpawnPosition() {
 }
 
 void level::getLevel(int lvl) {
+
+
     switch(lvl)
     {
         case 0: {
@@ -119,7 +122,7 @@ void level::getLevel(int lvl) {
 
             sf::RectangleShape tmp(sf::Vector2f(150, 50));
 
-            setPodloga();
+
 
             tmp.setPosition(200, 200);
             terrain.push_back(tmp);
@@ -171,3 +174,4 @@ void level::getLevel(int lvl) {
     }
 
 }
+
