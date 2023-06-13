@@ -53,7 +53,7 @@ int entity::takeDMG(int dmg)
     if(dmg > 0)
     {
         health-=dmg;
-        std::cout<<"dmg taken"<<std::endl;
+        //std::cout<<"dmg taken"<<std::endl;
     }
     return dmg;
 }

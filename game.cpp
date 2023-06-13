@@ -64,7 +64,7 @@ void game::Loop() {
         if (passageState){SwapLevels();}
         window.draw(passages[0]);
         window.draw(passages[1]);
-        std::cout<<"zdrowie: "<<lunk.health<<std::endl;
+        //std::cout<<"zdrowie: "<<lunk.health<<std::endl;
 
         window.display();
     }
@@ -193,24 +193,24 @@ void game::SwapLevels()
     if(lunk.getHitbox().getGlobalBounds().intersects(passages[0].getGlobalBounds()))
     {
         if(currLevel > 0) {
-            std::cout<<"prev";
+            //std::cout<<"prev";
             levels.getLevel(currLevel - 1);
             currLevel = currLevel - 1;
             terrain = levels.getTerrain();
             enemies = levels.getEnemies();
-            lunk.setPosition(700, lunk.getHitbox().getPosition().y);
+            lunk.setPosition(700+25, lunk.getHitbox().getPosition().y);
             passageState=0;
         }
     }
     if(lunk.getHitbox().getGlobalBounds().intersects(passages[1].getGlobalBounds()))
     {
         if(currLevel < 4) {
-            std::cout<<"next";
+            //std::cout<<"next";
             levels.getLevel(currLevel + 1);
             currLevel = currLevel + 1;
             terrain = levels.getTerrain();
             enemies = levels.getEnemies();
-            lunk.setPosition(50, lunk.getHitbox().getPosition().y);
+            lunk.setPosition(50+25, lunk.getHitbox().getPosition().y);
             passageState=0;
         }
     }
@@ -264,7 +264,7 @@ void game::HealthCheck()
 
             if(Projectiles[p].getHealth() <= 0)
             {
-                std::cout<<"projectile erased";
+                //std::cout<<"projectile erased";
                 Projectiles.erase(Projectiles.begin() + p);
             }
         }
@@ -312,7 +312,7 @@ void game::lunkDied() {
     currLevel = 0;
     terrain = levels.getTerrain();
     enemies = levels.getEnemies();
-    lunk.setPosition(50+25, lunk.getHitbox().getPosition().y+25);
+    lunk.setPosition(225, 425);
     lunk.health = 50;
 
   //  playerProjectiles.clear();
