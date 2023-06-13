@@ -9,9 +9,12 @@ enum directions {UP = 0 , DOWN = 1, LEFT = 2 , RIGHT = 3};
 class entity {
 
 protected:
+
     sf::RectangleShape hitbox;
+    sf::Texture hitboxTexture;
 
 public:
+
     int health;
     entity(sf::Vector2f position, int hp);
 

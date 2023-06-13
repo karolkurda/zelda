@@ -9,8 +9,8 @@ level::level() {
     terrain.push_back(tmp);
     tmp.setPosition(sf::Vector2f(400 , 200));
     terrain.push_back(tmp);
-    enemy e1(sf::Vector2f(150 , 0) , 100 , bow);
-    enemy e2(sf::Vector2f(500,200),100, sword);
+    enemy e1(sf::Vector2f(150+25 , 0+25) , 100 , bow);
+    enemy e2(sf::Vector2f(500+25,200+25),100, sword);
     enemies.push_back(e1);
     enemies.push_back(e2);
     passageState=false;
@@ -108,8 +108,8 @@ void level::getLevel(int lvl) {
             terrain.push_back(tmp);
             tmp.setPosition(sf::Vector2f(400, 200));
             terrain.push_back(tmp);
-            enemy e1(sf::Vector2f(150, 100), 100, bow);
-            enemy e2(sf::Vector2f(500, 200), 100, sword);
+            enemy e1(sf::Vector2f(150+25, 100+25), 100, bow);
+            enemy e2(sf::Vector2f(500+25, 200+25), 100, sword);
             enemies.push_back(e1);
             enemies.push_back(e2);
             setPassages();
@@ -130,9 +130,9 @@ void level::getLevel(int lvl) {
             terrain.push_back(tmp);
             tmp.setPosition(sf::Vector2f(600, 500));
             terrain.push_back(tmp);
-            enemy e1(sf::Vector2f(150, 0), 100, bow);
-            enemy e2(sf::Vector2f(500, 200), 100, sword);
-            enemy e3(sf::Vector2f(500,550), 100, bow);
+            enemy e1(sf::Vector2f(150+25, 0+25), 100, bow);
+            enemy e2(sf::Vector2f(500+25, 200+25), 100, sword);
+            enemy e3(sf::Vector2f(500+25,550+25), 100, bow);
             enemies.push_back(e1);
             enemies.push_back(e2);
             enemies.push_back(e3);

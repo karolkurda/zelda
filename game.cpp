@@ -76,6 +76,7 @@ void game::control()
 {
 sf::RectangleShape tmp(sf::Vector2f(50 , 50));
 tmp.setPosition(lunk.getHitbox().getPosition());
+tmp.setOrigin(sf::Vector2f(25,25));
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 
         tmp.move(sf::Vector2f(0, -GRIDSIZE));
@@ -296,7 +297,7 @@ void game::drawHud() {
     }
     for (int i = 0; i <= lunk.getHealth()/10; i++)
     {
-        heart.setPosition(800 - (i * heart.getSize().x) - 10 * i , 500 );
+        heart.setPosition(0 + (i * heart.getSize().x) + 10 * i , 615 );
         window.draw(heart);
     }
 
@@ -311,7 +312,7 @@ void game::lunkDied() {
     currLevel = 0;
     terrain = levels.getTerrain();
     enemies = levels.getEnemies();
-    lunk.setPosition(50, lunk.getHitbox().getPosition().y);
+    lunk.setPosition(50+25, lunk.getHitbox().getPosition().y+25);
     lunk.health = 50;
 
   //  playerProjectiles.clear();
